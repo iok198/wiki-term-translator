@@ -14,9 +14,9 @@ use serde::Deserialize;
 struct Cli {
     /// The word to be translated
     word: String,
-    /// The language the word is translated from
+    /// The ISO-639 code for language the word is translated from
     source_language: String,
-    /// The language the word is translated into
+    /// The ISO-639 code for language the word is translated into
     target_language: String,
     /// Retrieve the summary of the translated page
     #[arg(short, long)]
@@ -51,7 +51,9 @@ pub struct Pages {
 const USER_AGENT: &str = "wiki-term-translator";
 
 fn run() -> Result<()> {
+    #[cfg(debug_assertions)]
     color_eyre::install()?;
+
     let cli = Cli::parse();
     let client = Client::new();
     let source_language_code = Language::from_str(&cli.source_language)
@@ -82,6 +84,7 @@ fn run() -> Result<()> {
         }
     }
 
+    // TODO: Improve prompt to be more describe (like yay)
     print!("> ");
     io::stdout().flush()?;
 
