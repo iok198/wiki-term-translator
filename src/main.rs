@@ -14,9 +14,9 @@ use serde::Deserialize;
 struct Cli {
     /// The word to be translated
     word: String,
-    /// The ISO-639 code for language the word is translated from
+    /// The ISO-639 code for the language the word is translated from
     source_language: String,
-    /// The ISO-639 code for language the word is translated into
+    /// The ISO-639 code for the language the word is translated into
     target_language: String,
     /// Retrieve the summary of the translated page
     #[arg(short, long)]
