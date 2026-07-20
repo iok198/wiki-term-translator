@@ -1774,7 +1774,6 @@ dependencies = [
  "isolang",
  "reqwest",
  "serde",
- "serde_json",
 ]
 
 [[package]]
