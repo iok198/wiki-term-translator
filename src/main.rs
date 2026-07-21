@@ -21,6 +21,9 @@ struct Cli {
     /// Retrieve the summary of the translated page
     #[arg(short, long)]
     summary: bool,
+    /// Open Wikipedia page for target language article
+    #[arg(short, long)]
+    open_in_browser: bool,
 }
 
 #[derive(Debug, Deserialize)]
@@ -133,6 +136,13 @@ fn run() -> Result<()> {
                 println!("{} - {}", entry.title, summary);
             } else {
                 println!("{}", entry.title);
+            }
+
+            if cli.open_in_browser {
+                webbrowser::open(&format!(
+                    "https://{}.wikipedia.org/wiki/{}",
+                    target_language_code, entry.key
+                ))?;
             }
             return Ok(());
         }
