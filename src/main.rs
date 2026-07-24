@@ -77,6 +77,10 @@ fn run() -> Result<()> {
         .wrap_err("Couldn't parse network response of the Wikipedia pages correctly")?
         .pages;
 
+    if pages.is_empty() {
+        return Err(eyre!("No entries were found for {}", cli.word,));
+    }
+
     for (i, page) in pages.iter().enumerate().rev() {
         if let Some(desc) = &page.description
             && !desc.is_empty()
