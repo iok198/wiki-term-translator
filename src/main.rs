@@ -95,7 +95,6 @@ fn run() -> Result<()> {
         }
     }
 
-    // TODO: Improve prompt to be more describe (like yay)
     print!("> ");
     io::stdout().flush()?;
 
