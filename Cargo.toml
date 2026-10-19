@@ -4,6 +4,7 @@ version = "0.1.0"
 edition = "2024"
 
 [dependencies]
+arboard = { version = "3.7.0", features = ["wayland-data-control"] }
 clap = { version = "4.6.2", features = ["derive"] }
 color-eyre = "0.6.5"
 futures-io = "0.3.33"

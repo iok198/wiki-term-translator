@@ -4,6 +4,7 @@ use std::{
     str::FromStr,
 };
 
+use arboard::Clipboard;
 use clap::Parser;
 use color_eyre::eyre::{Context, OptionExt, Result, eyre};
 use isolang::Language;
@@ -24,6 +25,9 @@ struct Cli {
     /// Open Wikipedia page for target language article
     #[arg(short, long)]
     open_in_browser: bool,
+    /// Copy result to clipboard
+    #[arg(short, long)]
+    copy_to_clipboard: bool,
 }
 
 #[derive(Debug, Deserialize)]
@@ -140,6 +144,11 @@ fn run() -> Result<()> {
                 println!("{} - {}", entry.title, summary);
             } else {
                 println!("{}", entry.title);
+            }
+
+            if cli.copy_to_clipboard {
+                let mut clipboard = Clipboard::new()?;
+                clipboard.set_text(entry.title)?;
             }
 
             if cli.open_in_browser {
