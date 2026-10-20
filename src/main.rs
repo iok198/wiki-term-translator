@@ -95,6 +95,7 @@ fn run() -> Result<()> {
         }
     }
 
+    println!("> Available articles (eg: 1 2 3)");
     print!("> ");
     io::stdout().flush()?;
 
